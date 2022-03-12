@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+# Homework - 4
+
+# Author       : Syed Mohammad Ibrahim
+# Created At   : 03/12/2022
+# UID Number   : 118428369
+# Email        : iamibi@umd.edu
+# Course       : ENPM685
+# Section      : 0101
+
 # Imports
 import csv
 
