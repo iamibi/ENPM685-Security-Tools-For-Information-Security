@@ -48,7 +48,7 @@ def get_remaining(ad_list: list, edr_list: list):
     edr_enrolled = 0
     remaining = 0
     list_remaining = []
-    for ad in ad_csv_list:
+    for ad in ad_list:
         if ad["Hostname"] in hostnames_edr:
             edr_enrolled += 1
         else:
