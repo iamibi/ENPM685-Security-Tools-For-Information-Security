@@ -46,16 +46,23 @@ def get_remaining(ad_list: list, edr_list: list):
     # Collect the data on remaining hostname's
     # Only count a hostname once.
     hostnames_ad = {}
-    edr_enrolled_count = 0
+    edr_enrolled_set = set()
     for ad in ad_list:
-        if ad["Hostname"] in hostnames_edr:
-            edr_enrolled_count += 1
-        elif ad["Hostname"] not in hostnames_ad:
-            hostnames_ad[ad["Hostname"]] = ad
+        ad_hostname = ad["Hostname"]
+
+        # Check whether the hostname is already added to the dictionary or not
+        if ad_hostname not in hostnames_ad:
+            # Check whether the current hostname is present in hostname_edr list
+            # If present, add it to the set of edr_enrolled_set to remove duplicates
+            # Else add the object to the dictionary with key as ad_hostname
+            if ad_hostname in hostnames_edr:
+                edr_enrolled_set.add(ad_hostname)
+            else:
+                hostnames_ad[ad_hostname] = ad
 
     # Return the hostnames_ad dictionary which contains the remaining
     # hostnames that are yet to enroll, already enrolled hostnames count
-    return hostnames_ad, edr_enrolled_count
+    return hostnames_ad, len(edr_enrolled_set)
 
 
 # Filenames
